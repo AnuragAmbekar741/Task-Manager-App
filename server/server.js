@@ -1,11 +1,18 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config()
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
 
-const app = express()
-const port = process.env.PORT || 8080
+const connectToDb = require('./config/db')
 
-app.use(cors())
-app.use(express.json())
+const app = express();
+const port = process.env.PORT || 8080;
 
-app.listen(port, () => console.log(`server is running on ${port}`))
+app.use(cors());
+app.use(express.json());
+
+const startServer = async () => {
+    await connectToDb();
+    app.listen(port, () => console.log(`Server running on port ${port}`));
+};
+
+startServer();
