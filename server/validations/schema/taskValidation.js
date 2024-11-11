@@ -7,7 +7,7 @@ const TaskValidationSchema = z.object({
     description: z.string().max(500, 'Description cannot exceed 100 charachter'),
     status: z.enum(['todo', 'in progress', 'completed']).default('todo'),
     priority: z.enum(['low', 'medium', 'high']).default('medium'),
-    dueDate: z.date().optional(),
+    dueDate: z.string().optional(),
     userId: z.string().min(1, { message: "User ID is required" })
 })
 
